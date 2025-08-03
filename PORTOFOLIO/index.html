@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tentang Saya - Portofolio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="header">
+    <h1>Nama Anda</h1>
+    <p>Web Developer & Desainer UI/UX</p>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Tentang Saya</a></li>
+      <li><a href="projects.html">Proyek</a></li>
+      <li><a href="contact.html">Kontak</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section id="about">
+      <h2>Tentang Saya</h2>
+      <p>Halo! Saya seorang pengembang web dan desainer UI/UX dari Indonesia. Saya mencintai pembuatan aplikasi yang indah, fungsional, dan responsif. Saat ini saya fokus pada teknologi seperti HTML, CSS, JavaScript, React, dan Node.js.</p>
+      <p>Saya juga aktif belajar hal-hal baru setiap hari dan senang bekerja dalam tim untuk menciptakan solusi kreatif.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Nama Anda. Dibuat dengan ❤️</p>
+  </footer>
+
+  <script>
+    const sections = document.querySelectorAll('section');
+    const reveal = () => {
+      const triggerBottom = window.innerHeight * 0.8;
+      sections.forEach(sec => {
+        const top = sec.getBoundingClientRect().top;
+        if (top < triggerBottom) sec.classList.add('visible');
+      });
+    };
+    window.addEventListener('scroll', reveal);
+    window.addEventListener('load', reveal);
+
+    document.querySelectorAll('nav a, footer a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        if (link.getAttribute('href').startsWith('http') || link.getAttribute('href').includes('#')) return;
+        e.preventDefault();
+        document.body.classList.add('exit');
+        setTimeout(() => {
+          window.location.href = link.getAttribute('href');
+        }, 500);
+      });
+    });
+  </script>
+</body>
+</html>

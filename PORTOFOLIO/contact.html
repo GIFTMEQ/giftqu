@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kontak Saya - Portofolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    #contact form {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 2.5rem;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+
+    #contact input, #contact textarea {
+      width: 100%;
+      padding: 0.9rem;
+      margin-bottom: 1.2rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-family: inherit;
+      transition: all 0.3s ease;
+    }
+
+    #contact input:focus, #contact textarea:focus {
+      outline: none;
+      border-color: #3498db;
+      box-shadow: 0 0 10px rgba(52, 152, 219, 0.2);
+    }
+
+    #contact button {
+      background: linear-gradient(90deg, #8e44ad, #9b59b6);
+      color: white;
+      border: none;
+      padding: 0.8rem 2rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(142, 68, 173, 0.3);
+    }
+
+    #contact button:hover {
+      background: linear-gradient(90deg, #9b59b6, #8e44ad);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(142, 68, 173, 0.5);
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <h1>Hubungi Saya</h1>
+    <p>Silakan kirim pesan, saya akan merespons secepatnya</p>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Tentang Saya</a></li>
+      <li><a href="projects.html">Proyek</a></li>
+      <li><a href="contact.html">Kontak</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section id="contact">
+      <h2>Kontak Saya</h2>
+      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <input type="text" name="name" placeholder="Nama Anda" required />
+        <input type="email" name="email" placeholder="Email Anda" required />
+        <textarea name="message" rows="5" placeholder="Pesan Anda" required></textarea>
+        <button type="submit">Kirim Pesan</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Nama Anda. Dibuat dengan ❤️</p>
+  </footer>
+
+  <script>
+    const sections = document.querySelectorAll('section');
+    const reveal = () => {
+      const triggerBottom = window.innerHeight * 0.8;
+      sections.forEach(sec => {
+        const top = sec.getBoundingClientRect().top;
+        if (top < triggerBottom) sec.classList.add('visible');
+      });
+    };
+    window.addEventListener('scroll', reveal);
+    window.addEventListener('load', reveal);
+
+    document.querySelectorAll('nav a, footer a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        if (link.getAttribute('href').startsWith('http') || link.getAttribute('href').includes('#')) return;
+        e.preventDefault();
+        document.body.classList.add('exit');
+        setTimeout(() => {
+          window.location.href = link.getAttribute('href');
+        }, 500);
+      });
+    });
+  </script>
+</body>
+</html>

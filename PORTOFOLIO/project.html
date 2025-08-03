@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Proyek Saya - Portofolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .project {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      transition: transform 0.5s cubic-bezier(0.075, 0.82, 0.165, 1), box-shadow 0.5s ease;
+      transform-style: preserve-3d;
+      perspective: 1000px;
+    }
+
+    .project:hover {
+      transform: translateY(-10px) rotateX(10deg) rotateY(5deg);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    }
+
+    .project img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .project:hover img {
+      transform: scale(1.05) brightness(1.1);
+    }
+
+    .project-content {
+      padding: 1.8rem;
+    }
+
+    .project h3 {
+      margin-bottom: 0.8rem;
+      color: #2c3e50;
+      font-size: 1.4rem;
+    }
+
+    .project p {
+      margin-bottom: 1.2rem;
+      color: #555;
+    }
+
+    .project a {
+      display: inline-block;
+      background: linear-gradient(90deg, #3498db, #2980b9);
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border-radius: 6px;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .project a:hover {
+      background: linear-gradient(90deg, #2980b9, #1f618d);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(52, 152, 219, 0.5);
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <h1>Proyek Saya</h1>
+    <p>Karya terbaik yang pernah saya buat</p>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Tentang Saya</a></li>
+      <li><a href="projects.html">Proyek</a></li>
+      <li><a href="contact.html">Kontak</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section id="projects">
+      <h2>Proyek</h2>
+      <div class="projects">
+        <div class="project">
+          <img src="https://via.placeholder.com/300x200/3498db/ffffff?text=E-Commerce" alt="E-Commerce" />
+          <div class="project-content">
+            <h3>Website E-Commerce</h3>
+            <p>React + Firebase. Fitur: keranjang, login, pembayaran.</p>
+            <a href="#" target="_blank">Lihat Proyek</a>
+          </div>
+        </div>
+
+        <div class="project">
+          <img src="https://via.placeholder.com/300x200/27ae60/ffffff?text=To-Do+List" alt="To-Do List" />
+          <div class="project-content">
+            <h3>Aplikasi To-Do List</h3>
+            <p>Manajemen tugas harian dengan localStorage.</p>
+            <a href="#" target="_blank">Lihat Proyek</a>
+          </div>
+        </div>
+
+        <div class="project">
+          <img src="https://via.placeholder.com/300x200/e74c3c/ffffff?text=Portfolio" alt="Portfolio" />
+          <div class="project-content">
+            <h3>Portofolio Pribadi</h3>
+            <p>Dibuat dengan HTML, CSS, dan JS murni.</p>
+            <a href="#" target="_blank">Lihat Kode</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Nama Anda. Dibuat dengan ❤️</p>
+  </footer>
+
+  <script>
+    const sections = document.querySelectorAll('section');
+    const reveal = () => {
+      const triggerBottom = window.innerHeight * 0.8;
+      sections.forEach(sec => {
+        const top = sec.getBoundingClientRect().top;
+        if (top < triggerBottom) sec.classList.add('visible');
+      });
+    };
+    window.addEventListener('scroll', reveal);
+    window.addEventListener('load', reveal);
+
+    document.querySelectorAll('nav a, footer a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        if (link.getAttribute('href').startsWith('http') || link.getAttribute('href').includes('#')) return;
+        e.preventDefault();
+        document.body.classList.add('exit');
+        setTimeout(() => {
+          window.location.href = link.getAttribute('href');
+        }, 500);
+      });
+    });
+  </script>
+</body>
+</html>
